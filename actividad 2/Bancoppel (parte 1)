@@ -1,0 +1,76 @@
+var aux: String = ""
+var opcionIngresada: String = aux
+var saldoTotal: Double = 0
+
+
+func deposito() {
+  print("\n")
+  print("Ingrese la cantidad a depositar: ")
+  print("\n")
+  
+  aux = readLine()!
+  opcionIngresada = aux
+
+  if let cantidadDepositada = Double(opcionIngresada) {
+    print("Abono exitoso por $ \(cantidadDepositada)")
+    print("\n")
+  } else {
+    print("Error al realizar la operacion")
+  }
+}
+
+while opcionIngresada != "4" {
+  print("*******Bancoppel*******")
+  print("\n")
+  print("1. Deposito")
+  print("2. Retiro")
+  print("3. Consultar Saldo")
+  print("4. Salir")
+  print("\n")
+  print("Elige una opcion: ")
+
+  aux = readLine()! 
+  opcionIngresada = aux
+
+  switch opcionIngresada {
+    case "1":
+    deposito()
+    print("¿Desea realizar otro deposito? (S/N) : ")
+    
+    aux = readLine()!
+    opcionIngresada = aux
+
+    switch opcionIngresada {
+      case "S", "s", "SI", "si":
+        deposito()
+      case "N", "n", "NO", "no":
+      print("\n")
+        print("¿Desaeas continuar con otra operacion? (S/N) : ")
+
+       aux = readLine()!
+       opcionIngresada = aux
+
+       switch opcionIngresada {
+         case "S", "s", "SI", "si":
+         print("\n")
+
+         case "N", "n", "NO", "no":
+       print("Cerrando sesion... grasiias por usar el cajero")
+           opcionIngresada = "4"
+         
+      default:
+        print("Opcion no valida")
+      }
+      
+      default:
+      print("Opcion no valida")
+    }
+
+    case "4":
+    print("Cerrando sesion... grasiias por usar el cajero")
+    opcionIngresada = "4"
+    
+    default:
+    print("Opcion no valida")
+  }
+}
