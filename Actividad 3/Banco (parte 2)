@@ -1,0 +1,136 @@
+var aux: String = ""
+var opcionIngresada: String = aux
+var saldoTotal: Double = 0
+
+
+func deposito() {
+  print("\n")
+  print("Ingrese la cantidad a depositar: ")
+  print("\n")
+  
+  aux = readLine()!
+  opcionIngresada = aux
+
+  if let cantidadDepositada = Double(opcionIngresada) {
+    saldoTotal = saldoTotal + cantidadDepositada
+    print("Abono exitoso por $ \(cantidadDepositada)")
+    print("\n")
+  } else {
+    print("Error al realizar la operacion")
+  }
+}
+
+func retiro() {
+  print("\n")
+  print("Ingresa la cantidad a retirar: ")
+  print("\n")
+
+  aux = readLine()!
+  opcionIngresada = aux
+
+  if let cantidadRetirada = Double(opcionIngresada) {
+    if (saldoTotal >= cantidadRetirada){
+      saldoTotal = saldoTotal - cantidadRetirada
+      print("retiro exitoso por $ \(cantidadRetirada)")
+    }else{
+      print("Saldo insuficiente")
+    }
+  }
+}
+
+while opcionIngresada != "4" {
+  print("*******Bancoppel*******")
+  print("\n")
+  print("1. Deposito")
+  print("2. Retiro")
+  print("3. Consultar Saldo")
+  print("4. Salir")
+  print("\n")
+  print("Elige una opcion: ")
+
+  aux = readLine()! 
+  opcionIngresada = aux
+
+  switch opcionIngresada {
+    case "1":
+    deposito()
+    print("¿Desea realizar otro deposito? (S/N) : ")
+    
+    aux = readLine()!
+    opcionIngresada = aux
+
+    switch opcionIngresada {
+      case "S", "s", "SI", "si":
+        deposito()
+      case "N", "n", "NO", "no":
+      print("\n")
+        print("¿Desaeas continuar con otra operacion? (S/N) : ")
+
+       aux = readLine()!
+       opcionIngresada = aux
+
+       switch opcionIngresada {
+         case "S", "s", "SI", "si":
+         print("\n")
+
+         case "N", "n", "NO", "no":
+       print("Cerrando sesion... grasiias por usar el cajero")
+           opcionIngresada = "4"
+         
+      default:
+        print("Opcion no valida")
+      }
+      
+      default:
+      print("Opcion no valida")
+    }
+
+    case "2":
+    retiro()
+    print("¿Desea realizar otro retiro? (S/N) : ")
+
+    aux = readLine()!
+    opcionIngresada = aux
+
+    if opcionIngresada == "N" || opcionIngresada == "n" {
+      print("\n")
+      print("Desea realizar otra operacion? (S/N) : ")
+      
+      aux = readLine()!
+      opcionIngresada = aux
+
+      if opcionIngresada == "N" || opcionIngresada == "n" {
+        print("Cerrando sesion... grasiias por usar el cajero")
+        opcionIngresada = "4"
+      }
+    }
+
+    case "3":
+    print("\n")
+    print("Su saldo es de: $ \(saldoTotal)")
+    print("\n")
+    print("¿Desea realizar otra operacion? (S/N) : ")
+
+    aux = readLine()!
+    opcionIngresada = aux
+
+    switch opcionIngresada {
+      case "S", "s", "SI", "si":
+      print("")
+
+      case "N", "n", "NO", "no":
+      print("Cerrando sesion... grasiias por usar el cajero")
+      opcionIngresada = "4"
+
+      default:
+      print("\n")
+    }
+    
+    case "4":
+    print("Cerrando sesion... grasiias por usar el cajero")
+    opcionIngresada = "4"
+    
+    default:
+    print("Opcion no valida")
+  }
+}
